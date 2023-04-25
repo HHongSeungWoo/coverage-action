@@ -1,4 +1,4 @@
-name: "coverage-action"
+name: "coverage-action-test"
 description: "GitHub Action generates code coverage reports"
 branding:
   icon: "check-circle"
