@@ -3,7 +3,7 @@ const core = require("@actions/core");
 const { getPullRequestContext, getOctokit } = require("../lib/github");
 const { getSendSummaryComment, getAppName } = require("../input");
 
-export const findComment = async (
+const findComment = async (
   octokit,
   { repo, owner, issueNumber, searchBody }
 ) => {
@@ -20,7 +20,7 @@ export const findComment = async (
   return data.find((comment) => comment.body.includes(searchBody));
 };
 
-export const updateComment = async (
+const updateComment = async (
   octokit,
   { repo, owner, commentId, body }
 ) => {
@@ -37,7 +37,7 @@ export const updateComment = async (
   return data;
 };
 
-export const createComment = async (
+const createComment = async (
   octokit,
   { repo, owner, issueNumber, body }
 ) => {
@@ -104,7 +104,7 @@ const buildDetailsBlock = (changedFiles) => {
   return `<details>${summary}${table}</details>`;
 };
 
-export const getCoverageReportBody = ({
+const getCoverageReportBody = ({
   changedFiles,
   title,
   coverageDiff,

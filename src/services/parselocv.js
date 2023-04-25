@@ -60,14 +60,14 @@ const groupByFileLines = (filesLines) =>
     return { file, lines: groupedLines };
   });
 
-export const groupLcovData = (lcovData) => {
+const groupLcovData = (lcovData) => {
   const groupedFiles = groupByFile(lcovData);
 
   return groupByFileLines(groupedFiles);
 };
 
 // TODO: add types for data and lcovData
-export const parseLcovFileData = (data) =>
+const parseLcovFileData = (data) =>
   new Promise((resolve, reject) =>
     lcov(data, (err, res) => {
       if (err) {
@@ -78,7 +78,7 @@ export const parseLcovFileData = (data) =>
     })
   );
 
-export const calculatePercentage = (lcovData) => {
+const calculatePercentage = (lcovData) => {
   let hit = 0;
   let found = 0;
 
@@ -90,7 +90,7 @@ export const calculatePercentage = (lcovData) => {
   return parseFloat(((hit / found) * 100).toFixed(2));
 };
 
-export const parseLcovFile = async (coverageFilePath) => {
+const parseLcovFile = async (coverageFilePath) => {
   const fileRaw = fs.readFileSync(coverageFilePath, "utf8");
 
   if (!fileRaw) {
@@ -106,3 +106,6 @@ export const parseLcovFile = async (coverageFilePath) => {
 
   return { lcovData, data, percentage };
 };
+
+
+module.exports = {parseLcovFile};
