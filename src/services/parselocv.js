@@ -1,5 +1,6 @@
-import * as fs from "fs";
-import lcov from "lcov-parse";
+const fs = require('fs');
+const lcov = require('lcov-parse');
+
 
 const groupByFile = (lcovData) => {
   const response = [];

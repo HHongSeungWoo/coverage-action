@@ -39687,11 +39687,8 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony export */   "calculatePercentage": () => (/* binding */ calculatePercentage),
 /* harmony export */   "parseLcovFile": () => (/* binding */ parseLcovFile)
 /* harmony export */ });
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(7147);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lcov_parse__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(7454);
-/* harmony import */ var lcov_parse__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(lcov_parse__WEBPACK_IMPORTED_MODULE_1__);
-
+const fs = __nccwpck_require__(7147);
+const lcov = __nccwpck_require__(7454);
 
 
 const groupByFile = (lcovData) => {
@@ -39761,7 +39758,7 @@ const groupLcovData = (lcovData) => {
 // TODO: add types for data and lcovData
 const parseLcovFileData = (data) =>
   new Promise((resolve, reject) =>
-    lcov_parse__WEBPACK_IMPORTED_MODULE_1___default()(data, (err, res) => {
+    lcov(data, (err, res) => {
       if (err) {
         reject(err);
         return;
@@ -39783,7 +39780,7 @@ const calculatePercentage = (lcovData) => {
 };
 
 const parseLcovFile = async (coverageFilePath) => {
-  const fileRaw = fs__WEBPACK_IMPORTED_MODULE_0__.readFileSync(coverageFilePath, "utf8");
+  const fileRaw = fs.readFileSync(coverageFilePath, "utf8");
 
   if (!fileRaw) {
     throw new Error(
@@ -40195,18 +40192,6 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
