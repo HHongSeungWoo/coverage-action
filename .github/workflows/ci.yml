@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js v16.11.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: v16.11.0
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run linting checks
+        run: yarn lint
+
+      - name: Run formatting checks
+        run: yarn format-check
+
+      - name: Install dependencies
+        run: yarn test
+
+      - name: Run test coverage
+        run: yarn coverage
+
+      - name: Generate Code Coverage report
+        id: code-coverage
+        uses: ./
+        with:
+          lcov-file: "./coverage/lcov.info"
+          minimum-ratio: 0
+          send-summary-comment: true
+          show-annotations: "warning"

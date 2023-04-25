@@ -1,0 +1,40 @@
+name: "coverage-action"
+description: "GitHub Action generates code coverage reports"
+branding:
+  icon: "check-circle"
+  color: "yellow"
+inputs:
+  github-token:
+    description: Your GitHub Action token
+    required: true
+  lcov-file:
+    description: "Compare code coverage report"
+    required: true
+    default: "./coverage/lcov.info"
+  base-lcov-file:
+    description: "Base code coverage report to generate percentage diff"
+    required: false
+    default: ""
+  minimum-ratio:
+    description: "Minimum code coverage ratio that would to be considered as a difference between based and head commits"
+    required: false
+  send-summary-comment:
+    description: "Send Github Pull request comment with code coverage summary"
+    default: ""
+    required: false
+  show-annotations:
+    description: "Shows annotations with uncovered lines in the review. Options: warning|error"
+    default: "warning"
+    required: false
+  app-name:
+    description: "Application name should be used once you have more then one report in your workflow."
+    default: ""
+    required: false
+outputs:
+  percentage:
+    description: "Total Percentage coverage"
+  diff:
+    description: "Percantage difference between head branch"
+runs:
+  using: "node16"
+  main: "dist/index.js"
