@@ -1,5 +1,5 @@
 const github = require("@actions/github");
-const { Octokit } = require("octokit");
+const { Octokit } = require("@octokit/core");
 const { getGithubToken } = require("../input");
 
 let octokit = null;
